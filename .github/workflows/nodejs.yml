@@ -3,14 +3,14 @@ name: Node.js CI
 on: 
   push:
     branches:
-      - "handlebars"
+      - "main"
   pull_request:
     branches:
-      - "handlebars"
+      - "main"
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
