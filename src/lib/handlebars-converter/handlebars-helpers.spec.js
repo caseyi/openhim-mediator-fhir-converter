@@ -6,14 +6,14 @@
 var assert = require('assert');
 var constants = require('../constants/constants');
 var fs = require('fs');
-var helpers = require('./handlebars-helpers').external;
-var helperUtils = require('./handlebars-helpers').internal;
+var helpers = require('../handlebars-converter/handlebars-helpers').external;
+var helperUtils = require('../handlebars-converter/handlebars-helpers').internal;
 var hl7 = require('../hl7v2/hl7v2');
 var cda = require('../cda/cda');
 var path = require('path');
 var validator = require('validator');
 const fse = require('fs-extra');
-var HandlebarsConverter = require('./handlebars-converter');
+var HandlebarsConverter = require('../handlebars-converter/handlebars-converter');
 var dataHandlerFactory = require('../dataHandler/dataHandlerFactory');
 
 describe('Handlebars helpers', function () {

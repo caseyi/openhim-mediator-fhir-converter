@@ -4,7 +4,7 @@
 // -------------------------------------------------------------------------------------------------
 
 var assert = require('assert');
-var cda = require('./cda');
+var cda = require('../cda');
 
 describe('cda', function () {
     it('should preprocess template correctly.', function () {

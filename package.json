@@ -8,6 +8,7 @@
   },
   "scripts": {
     "clean": "rimraf dist/",
+    "clean:cache": "rimraf data/service-templates",
     "test:mocha": "DEBUG=true node --experimental-worker node_modules/mocha/bin/_mocha --reporter-options configFile=mocha.config.json --exit --inspect=0.0.0.0:9229 --timeout 12000",
     "test:jest": "DEBUG=true jest --passWithNoTests",
     "test": "yarn test:jest && yarn test:mocha",
@@ -91,6 +92,7 @@
     "@types/hapi": "^18.0.6",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.13",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "assert": "^2.0.0",
