@@ -13,26 +13,28 @@ module.exports = class fhir extends dataHandler {
     }
 
     parseSrcData(bundle, template) {
-        let out = {fhir: {}}
+        return new Promise((fulfill, reject) => {
+            let out = {fhir: {}}
+            out._originalData = bundle
+
+            try {
+                if(template && template.includes("ADT")) {
+                    out.fhir = this.parseAdt(bundle)
         
-        try {
-            if(template && template.includes("ADT")) {
-                out.fhir = this.parseAdt(bundle)
-    
-            } else {
-                out.fhir = this.parseObr(bundle)
-            }    
-        } catch(error) {
-            let e = error;
-            console.log(`Could not parse Bundle!\n${e.message}\n${e.stack ? e.stack : ""}`)
-        }
+                } else {
+                    out.fhir = this.parseObr(bundle)
+                }    
 
-        out.fhir.controlId = uuid_1.v4().toString();
-        out.fhir.date = new Date().toISOString().slice(0, 10).split('-').join('')
-
-        out._originalData = bundle;
-
-        return out
+                out.fhir.controlId = uuid_1.v4().toString();
+                out.fhir.date = new Date().toISOString().slice(0, 10).split('-').join('')
+            } catch(error) {
+                let e = error;
+                reject(out)
+                console.log(`Could not parse Bundle!\n${e.message}\n${e.stack ? e.stack : ""}`)
+            }
+            
+            fulfill(out)
+        })
     }
 
     preProcessTemplate(templateStr) {

@@ -38,7 +38,12 @@ function expireCache() {
 
 function generateResult(dataTypeHandler, dataContext, template) {
     var result = dataTypeHandler.postProcessResult(template(dataContext));
-    return Object.assign(dataTypeHandler.getConversionResultMetadata(dataContext.msg), { 'fhirResource': result });
+
+    if(dataTypeHandler.dataType == "fhir") {
+        return result
+    } else {
+        return Object.assign(dataTypeHandler.getConversionResultMetadata(dataContext.msg), { 'fhirResource': result });
+    }
 }
 
 WorkerUtils.workerTaskProcessor((msg) => {

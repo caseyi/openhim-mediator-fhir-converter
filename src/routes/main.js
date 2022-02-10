@@ -831,9 +831,13 @@ module.exports = function (app) {
     app.post('/api/convert/:srcDataType/:template(*)', function (req, res) {
         const retUnusedSegments = req.query.unusedSegments == 'true';
         const retInvalidAcces = req.query.invalidAccess == 'true';
+
+        let srcDataType = req.params.srcDataType
+        let srcData = (srcDataType == "fhir") ? req.body : req.body.toString()
+            
         workerPool.exec({
             'type': '/api/convert/:srcDataType/:template',
-            'srcData': req.body.toString(),
+            'srcData': srcData,
             'srcDataType': req.params.srcDataType,
             'templateName': req.params.template
         }).then((result) => {
@@ -845,7 +849,7 @@ module.exports = function (app) {
                 delete resultMessage['invalidAccess'];
             }
             res.status(result.status);
-            res.json(resultMessage);
+            srcDataType == "fhir" ? res.send(resultMessage) : res.json(resultMessage);
             return;
         });
     });

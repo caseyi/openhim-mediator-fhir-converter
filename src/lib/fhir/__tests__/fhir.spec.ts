@@ -31,7 +31,7 @@ describe('fhir', function () {
         let testBundle: R4.IBundle = await got.get("https://b-techbw.github.io/bw-lab-ig/Bundle-example-bw-lab-bundle.json").json()
         let fhirParser = new fhir()
         
-        let result = fhirParser.parseSrcData(testBundle, "ADT")
+        let result = await fhirParser.parseSrcData(testBundle, "ADT")
         
         expect(result._originalData).toEqual(testBundle)
         expect(result.fhir.patientId).toBe(testBundle.entry![1].resource!.id!)
