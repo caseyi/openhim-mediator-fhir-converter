@@ -1,0 +1,33 @@
+version: '3.8'
+
+## Container debugging:
+# 1. append the following lines to desired container
+# 2. boot up the container using `docker-compose up -d`
+# 3 run `docker exec -it <container-name> bash` to start interactive shell
+#
+#    tty: true
+#    stdin_open: true
+#    entrypoint: bash
+
+services:
+  fhir-converter:
+    container_name: built-fhir-converter
+    hostname: fhir-converter
+    restart: unless-stopped
+    build: ./
+    ports:
+      - 2019:2019
+      - 9230:9229
+    volumes:
+      - ./config.json:/app/config.json
+    #entrypoint: node --experimental-worker --inspect-brk=0.0.0.0:9229 dist/index.js
+    networks:
+      - hie
+    # tty: true
+    # stdin_open: true
+    # entrypoint: bash
+
+networks:
+  hie:
+    external: true
+    name: hie-botswana_hie

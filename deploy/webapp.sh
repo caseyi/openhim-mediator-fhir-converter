@@ -4,4 +4,5 @@
 # mkdir -p /home/fhirconvertertemplates
 # ln -snf /home/fhirconvertertemplates /usr/src/app/dist/service-templates
 
-npm start
+yarn prestart
+yarn start

@@ -2,20 +2,23 @@
 ### Base Image                         ##
 #########################################
 FROM node:14 AS build
-COPY ./src /app/src
+
+WORKDIR /app
+
 COPY ./package.json /app 
 COPY ./.eslintrc.js /app
 COPY ./tsconfig.json /app
 
-WORKDIR /app
+RUN yarn install
 
-RUN npm install --no-fund --no-optional --no-audit
-RUN npm run-script build
+COPY ./src /app/src
+
+RUN yarn build
 
 #########################################
 ### Prod Image                         ##
 #########################################
-FROM node:14-slim
+FROM node:14
 RUN  apt-get update && apt install libcurl3 libcurl4-gnutls-dev -y && apt autoremove -y
 
 COPY --from=build /app /app
