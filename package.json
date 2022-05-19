@@ -115,7 +115,7 @@
   },
   "dependencies": {
     "@types/got": "^9.6.12",
-    "antlr4": "^4.9.2",
+    "antlr4": "4.7.2",
     "applicationinsights": "^1.4.1",
     "body-parser": "^1.19.0",
     "codemirror": "^5.62.0",
@@ -130,6 +130,7 @@
     "got": "^11.8.2",
     "handlebars": "^4.7.7",
     "hl7v2": "^0.9.0",
+    "is-promise": "^4.0.0",
     "lodash": "^4.17.21",
     "memory-cache": "^0.2.0",
     "nconf": "^0.11.3",

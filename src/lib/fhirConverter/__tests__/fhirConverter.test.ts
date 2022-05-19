@@ -14,7 +14,7 @@ describe('translateBundle',
 
       let testBundle: R4.IBundle = await got.get("https://b-techbw.github.io/bw-lab-ig/Bundle-example-bw-lab-bundle.json").json()
 
-      let fc = new FhirConverter(testBundle, 'OBR.hbs')
+      let fc = new FhirConverter(testBundle, 'ORM_O01_TO_IPMS.hbs')
 
       const result = await fc.translateBundle();
 
