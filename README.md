@@ -56,13 +56,19 @@ Make sure that you have Node.js >=14.0 < 15.0 installed
 ```
 git clone https://github.com/microsoft/FHIR-Converter/
 cd FHIR-Converter
-git checkout handlebars
 yarn
 yarn tsc
 yarn start
 ```
 
 Once this completes, you can access the UI and the service at http://localhost:2019/
+
+To boot up OpenHIM
+```
+docker-compse up -d openhim-core openhim-console mongodb
+```
+
+OpenHIM console will run on `localhost:3000`
 
 ## Using the FHIR Converter
 
